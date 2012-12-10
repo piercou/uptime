@@ -1,13 +1,13 @@
 mongodb:
-  server:   localhost
+  server:   linus.mongohq.com
   database: uptime
-  user:     root 
+  user:     piercou 
   password:
   connectionString:       # alternative to setting server, database, user and password separately
 
 monitor:
   name:                   origin
-  apiUrl:                 'http://localhost:8082/api'
+  apiUrl:                 'http://localhost:' + (process.env.port || 8082) + '/api'
   pollingInterval:        10000      # ten seconds
   timeout:                5000       # five seconds
   userAgent:              NodeUptime/2.0 (https://github.com/fzaninotto/uptime)
@@ -20,6 +20,6 @@ analyzer:
 autoStartMonitor: true
 
 server:
-  port:     8082
+  port:     process.env.port || 8082
 
 verbose: true # only used in dev
